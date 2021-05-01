@@ -8,13 +8,15 @@ from django.http import Http404
 
 class ProductList(ListView):
     model = Product
+    template_name = 'list.html'
+
+    
 
 class ProductDetailView(DetailView):
     template_name = 'products/product_list.html'
 
     def get_context_data(self, *args, **kwargs):
-            context = super(ProductDetailView, self).get_context_data(**kwargs)
-            print(context)
+            context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
             return context
 
     def get_queryset(self, *args, **kwargs):
@@ -26,3 +28,11 @@ class ProductDetailView(DetailView):
             raise Http404("There is no such page")
         return instance
         
+    def product_detail(request, pk):
+        context = {
+        'product': get_object_or_404(Product, pk=id),
+        'title': 'Product Detail'
+        }
+        return render(request, 'detail.html', context)
+
+

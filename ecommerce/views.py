@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
 from .forms import ContactForm, RegistrationForm, LoginForm
 from django.contrib.auth import login, authenticate, get_user_model
@@ -34,9 +34,7 @@ def login_page(request):
     return render(request, "auth/login.html", context)
 
  
-
-
-def reg(request):
+def reg_page(request):
     form = RegistrationForm(request.POST or None)
     context = {
         'form': form
@@ -51,14 +49,15 @@ def reg(request):
     return render(request, "auth/reg.html", context)
 
 
-def home_page(request):
+def homepage(request):
     contact_form = ContactForm(request.POST or None)
     context = {
         "form": contact_form,
         "cleaned_email": LoginForm.clean_email,
+        "title":"Home page"
     }
     if contact_form.is_valid():
         print(contact_form.cleaned_data)
-    return render(request, "home_page.html", context)
+    return render(request, "homepage.html", context)
 
 

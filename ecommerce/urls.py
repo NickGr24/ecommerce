@@ -23,10 +23,10 @@ from products.views import ProductList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_page),
+    path('', views.homepage),
     path('contacts', views.contact_page),
     path('about', views.about_page),
-    path('reg', views.reg),
+    path('reg', views.reg_page),
     path('login', views.login_page),
-    path('product', ProductList.as_view()),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('list', ProductList.as_view()),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
