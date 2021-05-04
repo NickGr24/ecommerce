@@ -8,12 +8,10 @@ from django.http import Http404
 
 class ProductList(ListView):
     model = Product
-    template_name = 'list.html'
-
-    
+    template_name = 'products.html'
 
 class ProductDetailView(DetailView):
-    template_name = 'products/product_list.html'
+    template_name = 'products.html'
 
     def get_context_data(self, *args, **kwargs):
             context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
