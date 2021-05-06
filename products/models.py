@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.template.defaultfilters import slugify
+import datetime
 
 class Product(models.Model):
     title = models.CharField(max_length=120)
@@ -8,7 +9,10 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=15, decimal_places=3, default=39.9)
     image = models.ImageField(upload_to='products', blank=True, null=True)
     slug = models.SlugField(blank=True, unique=True, db_index=True, verbose_name="URL")
-    
+    featured = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
+    timestamp = models.DateTimeField(default=datetime.datetime.today())
+
     def __str__(self):
         return self.title
 

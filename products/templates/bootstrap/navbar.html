@@ -44,7 +44,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown Link
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li>
@@ -55,11 +55,7 @@
                     </li>
                 </ul>
 
-
-                <form class="d-flex mx-auto" action="{% url 'products' %}">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                        name="search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                {% include "search/search-form.html" %}
 
             </div>
         </div>

@@ -1,15 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <div class="row">
-        <div class="col-12 mb-3">
-                Searched for {{ request.search.q }}
-        </div>
-    </div>
-
     {% for obj in object_list %}
         {% include "products/snippets/card.html" with instance=obj %}
-      {{ obj.title }}  
     {% endfor %}
 {% endblock content %}

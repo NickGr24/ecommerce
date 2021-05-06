@@ -3,6 +3,5 @@
 {% block content %}
     {% for obj in object_list %}
         {% include "products/snippets/card.html" with instance=obj %}
-      {{ obj.title }}  
     {% endfor %}
 {% endblock content %}

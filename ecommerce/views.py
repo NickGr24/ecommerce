@@ -47,7 +47,7 @@ User = get_user_model()
 def login_page(request):
     form = LoginForm(request.POST or None)
     context = {
-        "form": contact_form,
+        "form": form,
         "cleaned_email": LoginForm.clean_email,
         "title":"Home page"
     }
