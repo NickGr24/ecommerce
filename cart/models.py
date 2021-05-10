@@ -23,7 +23,7 @@ class CartManager(models.Manager):
             cart_obj = Cart.objects.new(user=request.user)
             new_obj = True
             request.session['cart_id'] = cart_obj.id
-            return cart_obj, new_obj
+        return cart_obj, new_obj
 
     def new(self, user=None):
         user_obj = None
@@ -38,6 +38,7 @@ class Cart(models.Model):
     total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+
     objects = CartManager()
 
     def __str__(self):
