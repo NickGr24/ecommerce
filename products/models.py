@@ -14,14 +14,10 @@ class Product(models.Model):
     timestamp = models.DateTimeField(default=datetime.datetime.today())
 
     def get_absolute_url(self):
-        return reverse("products", kwargs={"slug": self.slug})
-    
+        return reverse("products", kwargs={"id": self.id})
 
     def __str__(self):
         return self.title
-
-    def get_absolute_url(self):
-        return reverse('product', args=[self.slug])
         
 class ProductManager(models.Manager):
     def get_by_id(self, id):

@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-
-{% block content %}
-    {% for obj in object_list %}
-        {% include "products/snippets/card.html" with instance=obj %}
-    {% endfor %}
-{% endblock content %}

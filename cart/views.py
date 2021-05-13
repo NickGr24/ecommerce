@@ -19,4 +19,4 @@ def cart_update(request):
     obj = Product.objects.get(id=product_id)
     cart_obj, new_obj = Cart.objects.new_or_get(request)
     cart_obj.products.add(obj)
-    return
+    return redirect(obj.get_absolute_url())
