@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="row text-center">
-        <div class="col">
-            <h1>{{ object.title }}</h1>
-            <p>{{ object.timestamp|timesince }} ago</p>
-            <p>{{ object.description }}</p>
-            {% if object.image %}
-                <img src="{{ object.image.url }}" class="img-fluid" style="width: 20rem;" alt="">
-            {% endif %}
-            {% endblock content %}
-    </div>
+<div class="col-12 text-center" style="width:20rem;">
+    <p>{{ object.title }}</p>
+    <p>{{ object.description }}</p>
+    <img src="{{ object.image.url }}" alt="{{ object.description }}" class="img-thumbnail">
+    <p>{{ object.price }}$</p>   
+    
+</div>    
+
+<div class="col-12" >
+    {% include "update-cart.html" with product=obj cart=cart %}
+    
 </div>
+{% endblock content %}

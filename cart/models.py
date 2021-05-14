@@ -41,22 +41,16 @@ class Cart(models.Model):
 
     objects = CartManager()
 
-    def get_absolute_url(self):
-        return reverse("cart", kwargs={"pk": self.pk})
-    
     def __str__(self):
         return str(self.id)
     
 def pre_save_cart_receiver(sender, instance, action, *args, **kwargs):
-    print(action)
+
     if action == 'post_add' or action == 'post_remove' or action == 'post_clear':
-        print(instance.products.all())
-        print(instance.total)
         products = instance.products.all()
         total = 0
         for x in products:
             total += x.price
-        print(total)
         instance.total = total 
         instance.save()
 

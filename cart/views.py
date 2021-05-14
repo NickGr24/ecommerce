@@ -9,14 +9,17 @@ def cart_home(request):
     total = 0
     for x in products:
         total += x.price
-    print(total)
     cart_obj.total = total
     cart_obj.save()
     return render(request, "cart/cart.html")
 
 def cart_update(request):
-    product_id = 1
+    print(request.POST)
+    product_id =  1 #request.POST.get('product_id')
     obj = Product.objects.get(id=product_id)
     cart_obj, new_obj = Cart.objects.new_or_get(request)
-    cart_obj.products.add(obj)
-    return redirect(obj.get_absolute_url())
+    if obj in cart_obj.products.all():
+        cart_obj.products.remove(obj)
+    else:
+        cart_obj.products.add(obj)
+    return redirect(cart_home)

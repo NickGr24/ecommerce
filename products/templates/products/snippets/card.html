@@ -1,18 +1,17 @@
 
-<div class="row mb-3">
-    {% if request.GET.search %}
-    <div class="col-12 mb-3">
-      Results for {{ request.GET.search }}
-      </div>
-    {% else %}
-    <div class="col-12 col-md-6 mx-auto py-5">
-      {% include "search/search-form.html" %}
-    </div>
+<div class="row mb-3 mx-auto py-5">
+  {% if request.GET.search %}
+  <div class="col-12 mb-3">
+    Results for {{ request.GET.search }}
+  {% else %}
+  <div class="col-12 col-md-6 ">
+    {% include "search/search-form.html" %}
+  </div>
+  </div>
+{% endif %}
 </div>
-  {% endif %}
 
 
-<div class="container d-flex justify-content-around">
 <div class="card" style="width: 20rem;">
 
   {% if instance.image %}
@@ -21,8 +20,11 @@
   <div class="card-body">
     <h5 class="card-title">{{ instance.title }}</h5>
     <p class="card-text">{{ instance.description }}</p>
+    {% if user.is_authenthicated %}
     <p class="card-text">{{ instance.price }}$</p>
+    {% endif %}
+    
     <a href="{% url 'detail' instance.pk %}" class="btn btn-primary">View</a>
+
   </div>
-</div>
 </div>

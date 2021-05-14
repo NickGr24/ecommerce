@@ -4,8 +4,7 @@ from products.models import Product
 from django.db.models import Q
 
 class SearchProduct(ListView):
-    template_name='view.html'
-    
+    template_name='search/view.html'
 
     def get_context_data(self, **kwargs):
         context = super(SearchProduct, self).get_context_data(**kwargs)
