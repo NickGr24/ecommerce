@@ -6,14 +6,17 @@ from cart.models import Cart
 
 from .models import Product
 
+from analytics.mixins import ObjectViewedMixin
+
 from django.http import Http404
 
 class ProductList(ListView):
     model = Product
     template_name = 'products.html'
 
-class ProductDetailView(DetailView):
+class ProductDetailView(ObjectViewedMixin, DetailView):
     template_name = 'detail.html'
+    model = Product
     queryset = Product.objects.all()
 
     def get_object(self, *args, **kwargs):
