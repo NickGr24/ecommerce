@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'cart',
     'analytics',
     'accounts',
+    'orders',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from products.models import Product
 from .models import Cart, CartManager
 
+from django.http import JsonResponse
+
 def cart_home(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
     context = {
@@ -12,14 +14,23 @@ def cart_home(request):
     return render(request, "cart/cart.html", context)
 
 def cart_update(request):
-    print(request.POST)
     product_id = request.POST.get('product_id')
+    
     if product_id is not None:
         product_obj = Product.objects.get(id=product_id)
         cart_obj, new_obj = Cart.objects.new_or_get(request)
         if product_obj in cart_obj.products.all():
             cart_obj.products.remove(product_obj)
+            product_added = False
         else:
             cart_obj.products.add(product_obj)
+            product_added = True
         request.session['cart_items'] = cart_obj.products.count()
+        if request.is_ajax():
+            json_data = {
+                'added': product_added,
+                'removed': not product_added,
+                'cartItemCount': cart_obj.products.count()
+            }
+            return JsonResponse(json_data)
     return redirect(cart_home)
