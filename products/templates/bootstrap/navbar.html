@@ -38,21 +38,11 @@
                     <li class="nav-item">
                         <a href="{% url 'products' %}" class="nav-link">Products</a>
                     </li>
-
-                    <li class="nav-item Dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown Link
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        
+                        <a href="{% url 'cart-home' %}" class="nav-link"><i class="fas fa-shopping-cart"></i> {{ request.session.cart_items }}</a>
                     </li>
+
                 </ul>
 
                 {% include "search/search-form.html" %}

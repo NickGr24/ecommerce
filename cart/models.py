@@ -52,6 +52,7 @@ def pre_save_cart_receiver(sender, instance, action, *args, **kwargs):
         for x in products:
             total += x.price
         instance.total = total 
+        print(total)
         instance.save()
 
 m2m_changed.connect(pre_save_cart_receiver, sender=Cart.products.through)

@@ -38,9 +38,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(max_length=255, unique=True)
-#    full_name = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False)
+    staff = models.BooleanField(default=True)
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
@@ -57,7 +56,7 @@ class User(AbstractBaseUser):
     def has_perm(self, perm, obj=None):
         return True
 
-    def has_module_perm(self, app_label):
+    def has_module_perms(self, app_label):
         return True
 
     @property

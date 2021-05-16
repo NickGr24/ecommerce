@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from django.template.defaultfilters import slugify
 import datetime
 
 class Product(models.Model):

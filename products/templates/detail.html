@@ -4,13 +4,16 @@
 <div class="col-12 text-center" style="width:20rem;">
     <p>{{ object.title }}</p>
     <p>{{ object.description }}</p>
+    {% if instance.image %}
     <img src="{{ object.image.url }}" alt="{{ object.description }}" class="img-thumbnail">
+    {% endif %}
+    
     <p>{{ object.price }}$</p>   
     
 </div>    
 
 <div class="col-12" >
-    {% include "update-cart.html" with product=obj cart=cart %}
+    {% include "update-cart.html" with product=object cart=cart %}
     
 </div>
 {% endblock content %}
