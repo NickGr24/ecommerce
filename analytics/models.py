@@ -32,7 +32,7 @@ def object_viewed_receiver(sender, instance, request, *args, **kwargs):
                 user=request.user, 
                 content_type=c_type,
                 object_id=instance.id,
-                ip_address=ip_address
+        #       ip_address=ip_address
                 )
 
 object_viewed_signal.connect(object_viewed_receiver)

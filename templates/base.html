@@ -29,75 +29,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
   </script>
-
-  <script>
-    $(document).ready(function(){
-      const productForm = $(`#form-product-ajax`)
-
-    productForm.submit(function(event) {
-      event.preventDefault();
-      const thisForm = $(this)
-      const action = thisForm.attr('action')
-      const method = thisForm.attr('method')
-      const formData = thisForm.serialize()
-      const actionEndpoint = thisForm.attr('data-endpoint')
-      
-      $.ajax({
-        url: action,
-        method: "POST",
-        data: formData,
-        success: function (data) {
-          console.log('Success', data)
-          const submitSpan = thisForm.find('.submit-span')
-          if (data.added){
-            submitSpan.html('In cart <button type="submit" class="btn btn-danger">Remove</button>')
-          
-        } else {
-            submitSpan.html('<button type="submit" class="btn btn-primary">Add to cart</button>')
-        }
-        let navbarCounter = $('.navbar-cart-count')
-        navbarCounter.text(data.cartItemCount)
-        let currentPath = window.location.href
-        if(currentPath.indexOf('cart') != -1){
-          updateCart()
-        }
-      },
-        error: function (errorData) {
-          console.log('An error occured - ', errorData)
-        }
-
-      })
-
-    })
-    function updateCart(){
-      console.log('In current cart')
-      const cartTable = $('.cart-table')
-      const cartBody = cartTable.find('.cart-body')
-      cartBody.html('<h1> Changed </h1>')
-      let updateCartUrl = '/api/cart/'
-      let updateCartMethod = "GET"
-      let data = {}
-      $.ajax({
-        url: updateCartUrl, 
-        method: updateCartMethod,
-        data: data,
-        success: function(data){
-          console.log('success')
-        },
-        error: function(errorData){
-          console.log('error')
-        }
-      
-      })
-    
-    }
-
-    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
   
-  })
-  </script>
-
-
+  <script src="{% static 'ecommerce.js' %}"></script>
+  
+  <script src="{% static 'csrf.ajax.js' %}"></script>
 </body>
 
 </html>

@@ -1,7 +1,5 @@
 from django.urls import path, include
 
-from ecommerce.views import ProductList
-
 from . import views
 
 

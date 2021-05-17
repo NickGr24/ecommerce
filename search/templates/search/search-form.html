@@ -1,4 +1,4 @@
-<form method="GET" action = "{% url 'search' %}"form my-2 my-lg-0">
+<form method="GET" action = "{% url 'search' %}" class="form my-2 my-lg-0 search-form">
     <div class="input-group">
         <input  type="search" placeholder="Search" aria-label="Search" class="form-control" name="search" value={{ request.GET.search }}>
         <span class="input-group-btn">

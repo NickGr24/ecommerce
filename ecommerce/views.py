@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
 from .forms import ContactForm, RegistrationForm, LoginForm
@@ -11,37 +11,18 @@ def about_page(request):
     context = {
         'title': 'About us'
     }
-    return render(request, "about.html", context )
+    return render(request, "about.html", context)
 
 
-class ProductList(ListView):
-    model = Product
-    template_name='products.html'
-
-    def get_queryset(self, *args, **kwargs):
-        request = self.request
-        return Product.objects.all()
-    
-def product_list_view(request):
-    queryset = Product.objects.all()
+def contact_page(request):
+    form = ContactForm
     context = {
-        'object_list': queryset
+        'form': ContactForm
     }
-    return render(request, template_name, context)
-
-
-class ProductDetail(DetailView):
-    model = Product
-    template_name='detail.html'
-
-
-def post_detail(request, pk):
-      return render(request, 'detail.html', {
-    'post': get_object_or_404(Post, pk=id)
-  })
-
-
-
+    if request.is_ajax():
+        return JsonResponse({'message': 'Thank you'})
+    return render(request, 'contact.html', context)
+    
 User = get_user_model()
 
 def login_page(request):

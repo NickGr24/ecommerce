@@ -13,7 +13,7 @@ class Product(models.Model):
     timestamp = models.DateTimeField(default=datetime.datetime.today())
 
     def get_absolute_url(self):
-        return reverse("products", kwargs={"pk": self.pk})
+        return reverse("products", kwargs={"slug": self.slug})
     
 
     def __str__(self):
