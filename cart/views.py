@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from products.models import Product
 from .models import Cart, CartManager
 
+from orders.models import Order
+
 from django.http import JsonResponse
 
 
@@ -41,3 +43,15 @@ def cart_update(request):
             }
             return JsonResponse(json_data)
     return redirect(cart_home)
+
+def checkout_home(request):
+    cart_obj, cart_created = Cart.objects.new_or_get(request)
+    order_obj = None
+    if cart_created or cart_obj.products.count() == 0:
+        return redirect(cart_home)
+    else:
+        order_obj, new_order_obj = Order.objects.get_or_create(cart=cart_obj)
+    context = {
+        'object': order_obj
+    }
+    return render(request, 'checkout.html', context)

@@ -4,30 +4,35 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, is_staff=False, is_admin=False, password=None):
+    def create_user(self, email, is_staff=False, is_active=True, is_admin=False, password=None):
         if not email:
             raise ValueError('Users must have an email')
         if not password:
             raise ValueError('Users must have a password')
 
         user_obj = self.model(
-            email = self.normalize_email(email)
+            email = self.normalize_email(email),
+            
         )
         user_obj.set_password(password)
+        user_obj.staff = is_staff
+        user_obj.admin = is_admin
+        user_obj.active = is_active
         user_obj.save(using=self._db)
         return user_obj
 
    
-    def create_superuser(self, email, is_staff=True, is_admin=True, password=None):
+    def create_superuser(self, email, password=None):
         user = self.create_user(
             email,
             password=password,
             is_staff=True,
+            is_admin=True
             )
         return user
    
    
-    def create_staffuser(self, email, is_staff=True, password=None):
+    def create_staffuser(self, email, password=None):
         user = self.create_user(
             email,
             password=password,
@@ -39,7 +44,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     email = models.EmailField(max_length=255, unique=True)
     active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=True)
+    staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 

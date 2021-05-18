@@ -12,10 +12,9 @@ urlpatterns = [
     path('', views.homepage, name='home'),
     path('about/', views.about_page, name='about'),
     path('contact/', views.contact_page, name='contact'),
-    path('reg', views.reg_page),
-    path('login', views.login_page),
     path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
     path('products/', include('products.urls')),
+    path('', include('accounts.urls')),
     path('search/', include('search.urls')),
     path('cart/', include('cart.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

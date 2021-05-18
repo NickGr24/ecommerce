@@ -17,7 +17,7 @@
       {% for product  in cart.products.all  %}
       <tr class="cart-products">
         <th scope="row">{{ forloop.counter }}</th>
-        <td> <a href="{% url 'detail' product.pk %}">{{ product.title }}</a>
+        <td> <a href="{% url 'detail' product.slug %}">{{ product.title }}</a>
           {% include "update-cart.html" with product=product cart=cart in_cart=True %}
         <td>{{ product.price }}</td>
       </tr>
@@ -25,6 +25,10 @@
       <tr>
         <td colspan="2"></td>
         <td><b> <span class="cart-total"> Total: {{ total }}$</span></b></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><b> <a class="btn btn-block btn-success" href="{% url 'checkout' %}">Checkout</a> </b></td>
       </tr>
   </tbody>
 </table>
