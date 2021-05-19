@@ -10,7 +10,7 @@ class Product(models.Model):
     slug = models.SlugField(blank=True, unique=True, db_index=True, verbose_name="URL")
     featured = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
-    timestamp = models.DateTimeField(default=datetime.datetime.today())
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
         return reverse("products", kwargs={"slug": self.slug})

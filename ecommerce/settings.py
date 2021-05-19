@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'analytics',
     'accounts',
     'orders',
-    'billing'
+    'billing',
+    'addresses',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates', BASE_DIR/'ecommerce/products/templates', BASE_DIR/'/ecommerce/search/templates/'],
+        'DIRS': [BASE_DIR/'templates', BASE_DIR/'ecommerce/products/templates', BASE_DIR/'/ecommerce/search/templates/', BASE_DIR/'/ecommerce/adresses/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,9 +84,9 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ecom_db',
+        'NAME': 'eco',
         'USER': 'postgres',
-        'PASSWORD': 'nikita1717',
+        'PASSWORD': '12',
         'HOST': 'localhost',
         'PORT': '5432',
     }

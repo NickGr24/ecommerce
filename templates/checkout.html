@@ -1,10 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
+{{ object.order_id }} -- {{ object.cart }}
+{% if not billing_profile %}
+Please log in
+<a href="{% url 'login' %}">Login</a>
+or 
+<div class="col-12 col-md-6">
+    Continue as guest
+    {% url 'guest' as guest_register_url %}
+    {% include "guestform.html" with form=guest_form next_url=request.build_absolute_url action_url=guest %}
+</div>
 
-<h1>Checkout</h1>
+{% else %}
 
-<p>Cart total : {{ object.cart.total }}</p>
-<p>Shipping total : {{ object.shipping_total }}</p>
-<p>Order total : {{ object.total }}</p>
+    {% if not object.shipping_address %}
+    {% url 'address' as address %}      
+    {% include "address.html" with form=address_form next_url=request.build_absolute_url action_url=address %}
+    {% else %}
+            <h1>Checkout</h1>
+
+            <p>Cart total: {{ object.cart.total }}</p>
+            <p>Shipping total: {{ object.shipping_total }}</p>
+            <p>Order total: {{ object.total }}</p>
+            <button type="submit">Finalize</button>
+    {% endif %}
+{% endif %}
+
+
 {% endblock content %}
