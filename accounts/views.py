@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, get_user_model
 from .forms import LoginForm, RegisterForm
-from django.utils.http import is_safe_url
+from django.utils.http import url_has_allowed_host_and_scheme
 from ecommerce.views import homepage
 
 User = get_user_model()

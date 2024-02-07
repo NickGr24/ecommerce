@@ -79,6 +79,18 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.email
     
+class UserIPAddress(models.Model):
+    ip_address = models.CharField(max_length=255)
+    user_agent = models.CharField(max_length=255, blank=True, null=True)
+    user_language = models.CharField(max_length=255, blank=True, null=True)
+    
+    class Meta:
+        verbose_name = "IP Address"
+        verbose_name_plural = "IP Addresses"
+    
+    def __str__(self):
+        return f'{self.ip_address}, {self.user_agent}'
+    
 
 class GuestEmail(models.Model):
     email = models.EmailField()

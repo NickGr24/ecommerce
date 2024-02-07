@@ -9,7 +9,7 @@ class GuestForm(forms.Form):
 
 class UserAdminCreationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
-    password_2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    password_2 = forms.CharField(label='Confirmă parola', widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -20,7 +20,7 @@ class UserAdminCreationForm(forms.ModelForm):
         password = cleaned_data.get("password")
         password_2 = cleaned_data.get("password_2")
         if password is not None and password != password_2:
-            self.add_error("password_2", "Your passwords must match")
+            self.add_error("password_2", "Parolele trebuie să coincidă")
         return cleaned_data
 
     def save(self, commit=True):
@@ -42,14 +42,12 @@ class UserAdminChangeForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
     username = forms.EmailField(max_length=50, label='Email')
-    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
-
-   
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput, label='Parola')
    
 class RegisterForm(forms.Form):
     email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
-    password_2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput, label='Parola')
+    password_2 = forms.CharField(label='Confirmă parolă', widget=forms.PasswordInput)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -57,7 +55,7 @@ class RegisterForm(forms.Form):
         print(password)
         password_2 = cleaned_data.get("password_2")
         if password is not None and password != password_2:
-            self.add_error("password_2", "Your passwords must match")
+            self.add_error("password_2", "Parolele trebuie să coincidă")
         return cleaned_data
 
     def save(self, commit=True):

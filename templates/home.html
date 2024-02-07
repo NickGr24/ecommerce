@@ -1,10 +1,11 @@
 {% extends "base.html"  %}
-
+{% load static %}
 {% block content %}
 
 <div class="col-12 text-center" >
-  <h1>Home page</h1>
-  <img class="img-thumbnail" style="width:300px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Shopping_cart_icon.svg/1280px-Shopping_cart_icon.svg.png" alt="cart">
-  <p>E-commerce (electronic commerce) is the activity of electronically buying or selling of products on online services or over the Internet. The term was coined and first employed by Dr. Robert Jacobson, Principal Consultant to the California State Assembly's Utilities & Commerce Committee, in the title and text of California's Electronic Commerce Act, carried by the late Commmittee Chairwoman Gwen Moore (D-L.A.) and enacted in 1984. Electronic commerce draws on technologies such as mobile commerce, electronic funds transfer, supply chain management, Internet marketing, online transaction processing, electronic data interchange (EDI), inventory management systems, and automated data collection systems. E-commerce is in turn driven by the technological advances of the semiconductor industry, and is the largest sector of the electronics industry.</p>
-{% endblock content %}
+  
+  <img class="img" style="width:300px" src="{% static 'img/logo.png' %}" alt="cart">
+  <p class="mx-5">Bun venit la PhonesMD - destinația ta pentru cele mai noi și performante telefoane mobile! Descoperă o gamă variată de dispozitive de ultimă generație și accesorii de înaltă calitate. Cu o echipă informată și pasionată, suntem aici să îți oferim experiența completă de cumpărare. Găsește telefonul perfect și accesorii elegante în magazinul nostru online. La PhonesMD, tehnologia devine accesibilă și satisfăcătoare. Te așteptăm să descoperi lumea noastră, unde tehnologia se întâlnește cu încrederea!</p>
 </div>
+
+  {% endblock content %}

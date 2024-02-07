@@ -20,7 +20,7 @@ class ObjectViewed(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self, ):
-        return "%s viewed: %s by %s" %(self.content_object, self.timestamp, self.user)
+        return "%s s-a uitat la: %s la data de %s" %(self.user, self.content_object, self.timestamp, )
 
     class Meta:
         ordering = ['-timestamp']

@@ -82,10 +82,10 @@ $(document).ready(function () {
                     console.log('Success', data)
                     const submitSpan = thisForm.find('.submit-span')
                     if (data.added) {
-                        submitSpan.html('In cart <button type="submit" class="btn btn-danger">Remove</button>')
+                        submitSpan.html('În coș <button type="submit" class="btn btn-danger">Șterge</button>')
 
                     } else {
-                        submitSpan.html('<button type="submit" class="btn btn-primary">Add to cart</button>')
+                        submitSpan.html('<button type="submit" class="btn btn-primary">Adaugă în coș</button>')
                     }
                     let navbarCounter = $('.navbar-cart-count')
                     navbarCounter.text(data.cartItemCount)

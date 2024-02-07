@@ -16,7 +16,7 @@ class ProductList(ListView):
     model = Product
     template_name = 'products.html'
 
-class ProductDetailView(ObjectViewedMixin, DetailView):
+class ProductDetailView(ObjectViewedMixin, LoginRequiredMixin, DetailView):
     template_name = 'detail.html'
     model = Product
     queryset = Product.objects.all()
@@ -27,7 +27,7 @@ class ProductDetailView(ObjectViewedMixin, DetailView):
         try:
             instance = Product.objects.get(slug=slug, active=True)
         except Product.DoesNotExist:
-            raise Http404('There is no such product')
+            raise Http404('Nu există așa produs')
         except Product.MultipleObjectsReturned:
             qs = Product.objects.filter(slug=slug, active=True)
             instance = qs.first()

@@ -3,13 +3,13 @@ class='form my-2 my-lg-0'>
   {% csrf_token %}
   <input type="hidden" name="product_id" value="{{ product.id }}" />
   {% if in_cart %}
-  <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+  <button type="submit" class="btn btn-sm btn-danger">Șterge</button>
   {% else %}
   <span class="submit-span">
     {% if product in cart.products.all %}
-    In cart <button type="submit" class="btn btn-danger">Remove</button>
+    In cart <button type="submit" class="btn btn-danger">Șterge</button>
     {% else %}
-    <button type="submit" class="btn btn-success">Add to cart</button>
+    <button type="submit" class="btn btn-success">Adaugă în coș</button>
     {% endif %}
   </span>
   {% endif %}

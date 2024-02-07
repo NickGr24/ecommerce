@@ -5,7 +5,7 @@ import datetime
 class Product(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField()
-    price = models.DecimalField(max_digits=15, decimal_places=3, default=39.9)
+    price = models.DecimalField(max_digits=15, decimal_places=0, default=10000)
     image = models.ImageField(upload_to='products', blank=True, null=True)
     slug = models.SlugField(blank=True, unique=True, db_index=True, verbose_name="URL")
     featured = models.BooleanField(default=False)

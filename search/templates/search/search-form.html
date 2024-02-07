@@ -1,8 +1,8 @@
-<form method="GET" action = "{% url 'search' %}" class="form my-2 my-lg-0 search-form">
-    <div class="input-group">
-        <input  type="search" placeholder="Search" aria-label="Search" class="form-control" name="search" value={{ request.GET.search }}>
+<form method="GET" action = "{% url 'search' %}" class="form my-2 my-lg-0  search-form">
+    <div class="input-group float-right">
+        <input  type="search" placeholder="Căutare" aria-label="Search" class="form-control" name="search" value={{ request.GET.search }}>
         <span class="input-group-btn">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-success" type="submit">Caută</button>
         </span>
     </div>
 </form>

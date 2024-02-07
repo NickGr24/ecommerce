@@ -1,13 +1,12 @@
 from django.contrib import admin
 
-from .models import GuestEmail, User
+from .models import GuestEmail, User, UserIPAddress
 
 from .forms import UserAdminChangeForm, UserAdminCreationForm
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-
 
 User = get_user_model()
 
@@ -37,4 +36,5 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(GuestEmail)
 admin.site.register(User, UserAdmin)
+admin.site.register(UserIPAddress)
 admin.site.unregister(Group)

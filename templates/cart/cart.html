@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Cart</h1>
+<h1>Coș</h1>
 {% if cart.products %}
 
 <table class="table cart-home">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Product name</th>
-      <th scope="col">Price</th>
+      <th scope="col">Denumirea</th>
+      <th scope="col">Preț</th>
 
     </tr>
   </thead>
@@ -24,16 +24,16 @@
       {% endfor %}
       <tr>
         <td colspan="2"></td>
-        <td><b> <span class="cart-total"> Total: {{ total }}$</span></b></td>
+        <td><b> <span class="cart-total"> Total: {{ total }} lei</span></b></td>
       </tr>
       <tr>
         <td colspan="2"></td>
-        <td><b> <a class="btn btn-block btn-success" href="{% url 'checkout' %}">Checkout</a> </b></td>
+        <td><b> <a class="btn btn-block btn-success" href="{% url 'checkout' %}">Achitare</a> </b></td>
       </tr>
   </tbody>
 </table>
 {% else %}
-<p class="lead">Cart is empty</p>
+<p class="lead">Coșul este gol</p>
 {% endif %}
 
 
